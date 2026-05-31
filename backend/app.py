@@ -545,7 +545,10 @@ def clear_chat(session_id):
     return jsonify({"status": "cleared", "session_id": session_id})
 
 import os
-
+from flask import send_from_directory
+@app.route("/")
+def home():
+    return send_from_directory("../frontend", "index.html")
 if __name__ == "__main__":
     print("Launching Flask Server...")
     app.run(
