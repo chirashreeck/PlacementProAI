@@ -5,8 +5,8 @@ from flask_cors import CORS
 from pypdf import PdfReader
 
 # Import local ML and NLP modules
-from ml_engine import MLEngine
-from nlp_parser import NLPParser, ROLE_PROFILES
+from backend.ml_engine import MLEngine
+from backend.nlp_parser import NLPParser, ROLE_PROFILES
 
 app = Flask(__name__)
 # Enable CORS for all routes to prevent cross-origin issues during local front-end testing
