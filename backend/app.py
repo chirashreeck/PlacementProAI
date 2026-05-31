@@ -544,6 +544,11 @@ def clear_chat(session_id):
         sessions[session_id] = []
     return jsonify({"status": "cleared", "session_id": session_id})
 
+import os
+
 if __name__ == "__main__":
-    print("Launching Flask Server on port 5000...")
-    app.run(debug=True, port=5000)
+    print("Launching Flask Server...")
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )
