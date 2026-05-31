@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Guide & Placement Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-icon">🎓</div>
+                <div class="logo-text">
+                    <h1>CareerAI</h1>
+                    <span>Student Placement Suite</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-divider"></div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-title">ASSISTANT MODE</div>
+                
+                <button class="nav-item active" data-mode="general" id="btn-mode-general">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-label">General Chat</span>
+                </button>
+                
+                <button class="nav-item" data-mode="guidance" id="btn-mode-guidance">
+                    <span class="nav-icon">🧭</span>
+                    <span class="nav-label">Career Guidance</span>
+                </button>
+                
+                <button class="nav-item" data-mode="resume" id="btn-mode-resume">
+                    <span class="nav-icon">📄</span>
+                    <span class="nav-label">Resume Analyzer</span>
+                </button>
+                
+                <button class="nav-item" data-mode="placement" id="btn-mode-placement">
+                    <span class="nav-icon">💼</span>
+                    <span class="nav-label">Placement Prep</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-divider"></div>
+            
+            <div class="sidebar-settings">
+                <div class="setting-group">
+                    <label for="select-target-role" class="setting-label">TARGET PATH</label>
+                    <select id="select-target-role" class="theme-select">
+                        <option value="Web Developer">Web Developer</option>
+                        <option value="AI Engineer">AI Engineer</option>
+                        <option value="Data Analyst">Data Analyst</option>
+                        <option value="Cybersecurity Analyst">Cybersecurity Analyst</option>
+                    </select>
+                </div>
+                
+                <button class="theme-toggle-btn" id="theme-toggle">
+                    <span class="toggle-icon">☀️</span>
+                    <span class="toggle-label">Switch Theme</span>
+                </button>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="status-dot green pulsing"></span>
+                    <span id="server-status">Connecting to Backend...</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN LAYOUT -->
+        <main class="main-content">
+            
+            <!-- CHAT VIEWPORT -->
+            <section class="chat-section">
+                <header class="chat-header">
+                    <div class="active-mode-info">
+                        <div class="mode-avatar" id="mode-avatar">🤖</div>
+                        <div>
+                            <h2 id="chat-title">General Chat</h2>
+                            <p id="chat-subtitle">Ask questions about career fields or placement preparation.</p>
+                        </div>
+                    </div>
+                    
+                    <button class="clear-chat-btn" id="btn-clear-chat" title="Clear Chat History">
+                        🗑️ Clear
+                    </button>
+                </header>
+                
+                <!-- Chat Message Container -->
+                <div class="messages-container" id="chat-messages">
+                    <!-- Default Greeting -->
+                    <div class="message bot-message">
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content">
+                            <p>Hello! I am your <strong>AI Career Guidance & Placement Assistant</strong>.</p>
+                            <p>I can help you analyze your resume against industry-standard scores, run a Machine Learning job predictor to suggest career roadmaps, or give placement training tips (coding, soft skills, aptitude)!</p>
+                            <p><strong>What would you like to explore first? Select a mode in the sidebar to get tailored suggestions!</strong></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Message Input Footer -->
+                <footer class="chat-input-footer">
+                    <!-- Dynamic floating action chips depending on mode -->
+                    <div class="suggested-chips" id="quick-chips">
+                        <button class="chip" data-text="What is this bot for?">What is this bot for?</button>
+                        <button class="chip" data-text="Tell me about the tech roles">Tell me about the tech roles</button>
+                        <button class="chip" data-text="Explain the ML architecture">Explain the ML architecture</button>
+                    </div>
+                    
+                    <div class="input-form">
+                        <textarea id="chat-input" placeholder="Type your message here..." rows="1"></textarea>
+                        
+                        <div class="input-actions">
+                            <button class="action-btn" id="btn-file-dummy" title="Upload Resume PDF/TXT" style="display: none;">
+                                📎 Upload
+                            </button>
+                            <button class="send-btn" id="btn-send-message">
+                                <span>Send</span>
+                                <span class="send-arrow">➔</span>
+                            </button>
+                        </div>
+                    </div>
+                </footer>
+            </section>
+
+            <!-- INSIGHTS PANEL (RIGHT COLUMN) -->
+            <section class="insights-section" id="insights-panel">
+                <header class="insights-header">
+                    <h3>💡 Instant Insights</h3>
+                </header>
+                
+                <div class="insights-body" id="insights-content">
+                    
+                    <!-- DEFAULT / GENERAL INSIGHTS -->
+                    <div class="insight-card" id="card-default-insights">
+                        <h4>Welcome to CareerAI</h4>
+                        <p>This industry-level system combines AI, ML, and NLP concepts to maximize your placement chances.</p>
+                        
+                        <div class="concept-badge-list">
+                            <span class="concept-badge ai">AI Decision Engine</span>
+                            <span class="concept-badge ml">Scikit-learn Classifiers</span>
+                            <span class="concept-badge nlp">NLTK Text Tokenization</span>
+                        </div>
+                        
+                        <div class="features-summary">
+                            <div class="feature-item">
+                                <span class="feature-icon">🧭</span>
+                                <div>
+                                    <h5>Job prediction</h5>
+                                    <p>Predicts Data Analyst, AI Engineer, Web Developer, or Security Roles based on your skills.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <span class="feature-icon">📄</span>
+                                <div>
+                                    <h5>ATS Resume scoring</h5>
+                                    <p>Parses your uploaded PDF or pasted text to extract keyword matches.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CAREER ML CLASSIFIER PANEL (HIDDEN BY DEFAULT) -->
+                    <div class="insight-card hidden" id="card-ml-insights">
+                        <h4>ML Job Role Predictor</h4>
+                        <p class="subtitle">Trained on a local skills dataset using TF-IDF vectorization & Logistic Regression.</p>
+                        
+                        <div class="predictor-form">
+                            <div class="form-group">
+                                <label for="skills-input">List Your Tech Skills</label>
+                                <textarea id="skills-input" placeholder="e.g., Python, SQL, Git, HTML, CSS" rows="2"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="interests-input">List Your Interests/Strengths</label>
+                                <textarea id="interests-input" placeholder="e.g., building web design, automating tasks, data scraping" rows="2"></textarea>
+                            </div>
+                            <button class="primary-btn" id="btn-predict-role">Run ML Predictor ⚡</button>
+                        </div>
+                        
+                        <div class="prediction-results hidden" id="prediction-results-container">
+                            <h5>ML Prediction Confidence</h5>
+                            <div class="chart-container" id="ml-chart">
+                                <!-- Bars will be added dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- RESUME ANALYZER PANEL (HIDDEN BY DEFAULT) -->
+                    <div class="insight-card hidden" id="card-resume-insights">
+                        <h4>ATS Resume Analyzer</h4>
+                        <p class="subtitle">Extracts keywords and scores compatibility against your <strong>Target Path</strong>.</p>
+                        
+                        <div class="analyzer-options">
+                            <div class="tabs-header">
+                                <button class="tab-btn active" data-tab="tab-upload">Upload File</button>
+                                <button class="tab-btn" data-tab="tab-paste">Paste Text</button>
+                            </div>
+                            
+                            <div class="tab-content active" id="tab-upload">
+                                <div class="drop-zone" id="drop-zone-resume">
+                                    <span class="drop-icon">📤</span>
+                                    <span class="drop-text">Drag & Drop Resume here or <strong>Browse</strong></span>
+                                    <span class="drop-limit">Supports PDF, TXT up to 5MB</span>
+                                    <input type="file" id="file-resume" accept=".pdf,.txt,.md" class="hidden-file-input">
+                                </div>
+                                <div class="file-info hidden" id="file-info-container">
+                                    <span class="file-name" id="selected-file-name">resume.pdf</span>
+                                    <button class="clear-file-btn" id="btn-clear-file">❌</button>
+                                </div>
+                            </div>
+                            
+                            <div class="tab-content" id="tab-paste">
+                                <textarea id="paste-resume-text" placeholder="Paste full resume text here..." rows="6"></textarea>
+                            </div>
+                            
+                            <button class="primary-btn" id="btn-analyze-resume" style="margin-top: 15px;">Analyze Resume 🔍</button>
+                        </div>
+                        
+                        <!-- ATS Results Dashboard -->
+                        <div class="ats-results hidden" id="ats-results-container">
+                            <div class="score-circle-container">
+                                <div class="score-radial">
+                                    <svg>
+                                        <circle cx="50" cy="50" r="45"></circle>
+                                        <circle cx="50" cy="50" r="45" id="score-progress"></circle>
+                                    </svg>
+                                    <div class="score-text">
+                                        <span id="ats-score-num">0</span>
+                                        <span class="ats-percent">%</span>
+                                        <span class="score-label">ATS Score</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-gap-analysis">
+                                <h5>Skill Gap Analysis</h5>
+                                <div class="skills-split">
+                                    <div class="split-col">
+                                        <h6 class="green-text">Extracted Skills (✓)</h6>
+                                        <ul id="matching-skills-list"></ul>
+                                    </div>
+                                    <div class="split-col">
+                                        <h6 class="red-text">Missing Skills (⚠)</h6>
+                                        <ul id="missing-skills-list"></ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- PLACEMENT ASSISTANT QUICK CONTROLS (HIDDEN BY DEFAULT) -->
+                    <div class="insight-card hidden" id="card-placement-insights">
+                        <h4>Placement Assistant Tools</h4>
+                        <p class="subtitle">Quickly trigger prep guides and tests for <strong><span id="prep-role-label">Web Developer</span></strong> role.</p>
+                        
+                        <div class="grid-controls">
+                            <button class="control-btn" data-type="question">
+                                <span class="control-icon">❓</span>
+                                <span>Mock Question</span>
+                            </button>
+                            <button class="control-btn" data-type="coding">
+                                <span class="control-icon">💻</span>
+                                <span>Coding Prep</span>
+                            </button>
+                            <button class="control-btn" data-type="aptitude">
+                                <span class="control-icon">🧮</span>
+                                <span>Aptitude Guide</span>
+                            </button>
+                            <button class="control-btn" data-type="communication">
+                                <span class="control-icon">🗣️</span>
+                                <span>Soft Skills Tips</span>
+                            </button>
+                        </div>
+                        
+                        <div class="prep-hint-card">
+                            <h5>💡 Tip:</h5>
+                            <p>You can also ask the chatbot directly. Type <strong>"give me a coding tip"</strong> or <strong>"ask me an interview question"</strong> in the chat input!</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+            
+        </main>
+    </div>
+    
+    <!-- Main Logic Script -->
+    <script src="script.js"></script>
+</body>
+</html>
