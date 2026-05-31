@@ -73,7 +73,7 @@ class MLEngine:
         if os.path.exists(MODEL_PATH) and os.path.exists(VECTORIZER_PATH):
             try:
                 with open(MODEL_PATH, "rb") as f:
-                    self.model = pickle.dump = pickle.load(f)
+                    self.model = pickle.load(f)
                 with open(VECTORIZER_PATH, "rb") as f:
                     self.vectorizer = pickle.load(f)
                 self.trained = True
